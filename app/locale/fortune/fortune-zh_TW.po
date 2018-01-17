@@ -7,16 +7,18 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-06-12 23:13-0700\n"
-"PO-Revision-Date: 2015-09-23 04:42+0000\n"
-"Last-Translator: Kenny Root <Unknown>\n"
-"Language: zh_Hant_TW\n"
+"POT-Creation-Date: 2017-02-28 00:29-0800\n"
+"PO-Revision-Date: 2017-03-08 08:40+0000\n"
+"Last-Translator: Po-Chun Huang <Unknown>\n"
 "Language-Team: zh_Hant_TW <LL@li.org>\n"
-"Plural-Forms: nplurals=1; plural=(0)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 1.3\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Launchpad-Export-Date: 2017-03-08 08:44+0000\n"
+"X-Generator: Launchpad (build 18330)\n"
+"Language: zh_Hant_TW\n"
+"Generated-By: Babel 2.3.4\n"
 
 #. Summary of what ConnectBot is; used as a short description in the Android
 #. running apps list
@@ -28,7 +30,7 @@ msgstr "簡單、強大、開放原始碼的SSH用戶端。"
 #. running apps list
 msgctxt "service_desc"
 msgid "Maintains SSH connections and loaded pubkeys"
-msgstr "管理 SSH 連線及載入公鑰"
+msgstr "維護 SSH 連線及公鑰"
 
 #. Window title for the Host List
 msgctxt "title_hosts_list"
@@ -68,38 +70,39 @@ msgstr "挑選顏色"
 #. Window title for the global applications settings activity.
 msgctxt "title_settings"
 msgid "Settings"
-msgstr ""
+msgstr "設置"
 
 #. Window title when generating a new pubkey.
 msgctxt "title_pubkey_generate"
 msgid "Generate"
-msgstr ""
+msgstr "生成"
 
 msgctxt "help_intro"
-msgid "Please select a topic below for more information on a particular subject."
+msgid ""
+"Please select a topic below for more information on a particular subject."
 msgstr "請在下列選擇一個主題以查看更多內容。"
 
 #. Title for the help page with the terms & conditions of the app.
 msgctxt "terms_and_conditions"
 msgid "Terms & Conditions"
-msgstr ""
+msgstr "條款與條件"
 
 #. Title for the help page with the hints about the app.
 msgctxt "hints"
 msgid "Hints"
-msgstr ""
+msgstr "提示"
 
 #. Header text for instructions about creating host shortcuts.
 msgctxt "host_shortcuts_header"
 msgid "Host Shortcuts"
-msgstr ""
+msgstr "主機捷徑"
 
 #. Instructions about creating host shortcuts.
 msgctxt "host_shortcuts_content"
 msgid ""
-"Long-press on your Android desktop to create direct shortcuts to "
-"frequently-used SSH hosts."
-msgstr ""
+"Long-press on your Android desktop to create direct shortcuts to frequently-"
+"used SSH hosts."
+msgstr "長按 Android 桌面以新增常用主機捷徑"
 
 #. Header text for instructions about scrolling the terminal.
 msgctxt "scroll_hints_header"
@@ -109,8 +112,8 @@ msgstr ""
 #. Instructions about scrolling the terminal.
 msgctxt "scroll_hints_content"
 msgid ""
-"Swiping your finger up on the right side of the screen allows you to "
-"scroll backward and forward in the local terminal buffer history."
+"Swiping your finger up on the right side of the screen allows you to scroll "
+"backward and forward in the local terminal buffer history."
 msgstr ""
 
 #. Captions for images showing the scroll back/forward gestures.
@@ -125,78 +128,81 @@ msgstr ""
 #. Header text for instructions about paging up and down in the terminal.
 msgctxt "page_updn_header"
 msgid "Page Up / Page Down"
-msgstr ""
+msgstr "上一頁/下一頁"
 
 #. Instructions about paging up and down in the terminal.
 msgctxt "page_updn_content"
 msgid ""
 "NOTE: This must be enabled in settings.\n"
 "\n"
-"Swiping your finger up and down on the left third of the screen will send"
-" a page up and page down key to the remote host. Many programs map this "
-"to scrolling back into history such as irssi or tinyfugue."
+"Swiping your finger up and down on the left third of the screen will send a "
+"page up and page down key to the remote host. Many programs map this to "
+"scrolling back into history such as irssi or tinyfugue."
 msgstr ""
+"注意: 這必須在設置中啟用。\n"
+"\n"
+"在屏幕左側的三分之一以內用手指向上和向下滑動將向遠程主機發送向上翻頁和向下翻頁鍵。許多程序映射為在歷史中向後滾動如 irssi 或 tinyfugue。"
 
 #. Captions for images showing the page up/down gestures.
 msgctxt "page_up"
 msgid "Page up"
-msgstr ""
+msgstr "上一頁"
 
 msgctxt "page_down"
 msgid "Page down"
-msgstr ""
+msgstr "下一頁"
 
 msgctxt "switching_hosts_header"
 msgid "Switching Hosts"
-msgstr ""
+msgstr "切換主機"
 
 #. Instructions about switching to the next and previous host in the terminal.
 msgctxt "switching_hosts_content"
 msgid ""
 "Swiping your finger from one side of the screen to the other will switch "
 "between currently connected hosts."
-msgstr ""
+msgstr "用手指從螢幕的一側滑到另一側將在當前連接的主機之間進行切換。"
 
 #. Captions for images showing the next/previous host gestures.
 msgctxt "next_host"
 msgid "Next host"
-msgstr ""
+msgstr "下一個主機"
 
 msgctxt "prev_host"
 msgid "Previous host"
-msgstr ""
+msgstr "上一個主機"
 
 #. Title for the help dialog showing keyboard shortcuts.
 msgctxt "keyboard_shortcuts"
 msgid "Keyboard Shortcuts"
-msgstr ""
+msgstr "鍵盤快捷鍵"
 
 #. Text in a keyboard shortcuts list lined up to keys which increase the
 #. terminal font-size.
 msgctxt "increase_font_size"
 msgid "Increase Font Size"
-msgstr ""
+msgstr "放大字體"
 
 #. Keyboard shortcut for increasing the font size.
 msgctxt "increase_font_shortcut"
 msgid "Ctrl and +"
-msgstr ""
+msgstr "Ctrl 和 + 鍵"
 
 #. Text in a keyboard shortcuts list lined up to keys which decrease the
 #. terminal font-size.
 msgctxt "decrease_font_size"
 msgid "Decrease Font Size"
-msgstr ""
+msgstr "縮小字體"
 
 #. Keyboard shortcut for decreasing the font size.
 msgctxt "decrease_font_shortcut"
 msgid "Ctrl and -"
-msgstr ""
+msgstr "Ctrl 和 - 鍵"
 
 #. Keyboard shortcut for pasting into the terminal.
 msgctxt "paste_shortcut"
 msgid "Ctrl-Shift-V"
-msgstr ""
+msgstr "Ctrl-Shift-V"
 
 msgctxt "pubkey_generate"
 msgid "Generate"
@@ -219,13 +225,13 @@ msgstr "觸摸此方框來收集隨機數：%1$d％完成"
 
 msgctxt "pubkey_touch_hint"
 msgid ""
-"In order to assure randomness during the key generation, move your finger"
-" randomly over the box below."
+"In order to assure randomness during the key generation, move your finger "
+"randomly over the box below."
 msgstr "由於金鑰產生的時候需要隨機資訊，請在下面的方框中隨意移動您的手指。"
 
 msgctxt "pubkey_generating"
 msgid "Generating key pair…"
-msgstr "正在產生金鑰對……"
+msgstr "正在產生金鑰對…"
 
 msgctxt "pubkey_copy_private"
 msgid "Copy private key"
@@ -356,7 +362,7 @@ msgstr "密碼："
 #. Added after a "Password:" prompt to indicate user needs to confirm entry.
 msgctxt "prompt_again"
 msgid "(again)"
-msgstr "(再輸入一遍密碼)"
+msgstr "(再輸入一次密碼)"
 
 #. Label for the user to select port forward type.
 msgctxt "prompt_type"
@@ -378,7 +384,7 @@ msgstr "位元："
 #, c-format
 msgctxt "prompt_pubkey_password"
 msgid "Password for key '%1$s'"
-msgstr "公鑰「%1$s」的密碼"
+msgstr "公鑰\"%1$s\"的密碼"
 
 #. Prompt for whether to allow SSH Authentication Agent to use the specified
 #. key. Note that the '\n' means split the line so it's actually "host to use
@@ -405,12 +411,11 @@ msgstr "警告：遠端主機的識別已變更！"
 msgctxt "host_verification_failure_warning"
 msgid ""
 "IT IS POSSIBLE THAT SOMEONE IS DOING SOMETHING NASTY!\n"
-"Someone could be eavesdropping on you right now (man-in-the-middle "
-"attack)!\n"
+"Someone could be eavesdropping on you right now (man-in-the-middle attack)!\n"
 "It is also possible that the host key has just been changed."
 msgstr ""
-"可能某人正在做非善意的事情!\n"
-"可能有人正在側錄您的連線(中間攻擊法)!\n"
+"可能某人正在做非善意的事情！\n"
+"可能有人正在側錄您的連線(中間攻擊法)！\n"
 "但也許僅僅是主機金鑰已變更。"
 
 #. Prompt user gets when the remote host has disconnected unexpectedly.
@@ -419,8 +424,8 @@ msgid ""
 "Host has disconnected.\n"
 "Close session?"
 msgstr ""
-"主機已經中斷。\n"
-"是否關閉本次連線階段？"
+"已經中斷連線。\n"
+"是否關閉本次階段？"
 
 #. Prompt user must answer yes or no to when the remote host fails
 #. verification of encryption fingerprint
@@ -435,7 +440,7 @@ msgstr "是否要繼續連線？"
 #, c-format
 msgctxt "host_authenticity_warning"
 msgid "The authenticity of host '%1$s' can't be established."
-msgstr "主機「%1$s」的驗證無法建立"
+msgstr "主機\"%1$s\"的驗證無法建立。"
 
 #. First field is encryption algorithm. Second is the actual fingerprint in
 #. hex digits
@@ -507,6 +512,17 @@ msgctxt "pref_scrollback_summary"
 msgid "Size of scrollback buffer to keep in memory for each console"
 msgstr "在記憶體中為每個控制台保留的回溯緩衝大小"
 
+#. Title of the preference used to enable or disable the back-up of pubkeys.
+msgctxt "pref_backupkeys_title"
+msgid "Backup pubkeys"
+msgstr ""
+
+#. Summary for the preference used to enable or disable the back-up of
+#. pubkeys.
+msgctxt "pref_backupkeys_summary"
+msgid "Keep back-ups of the private keys using Android's backup mechanism"
+msgstr ""
+
 #. The category title for user interface preferences
 msgctxt "pref_ui_category"
 msgid "User interface"
@@ -535,12 +551,12 @@ msgstr "輕觸終端機來顯示標題列並存取選單"
 #. Title for special keys always visible preference
 msgctxt "pref_alwaysvisible_title"
 msgid "Special keys always visible"
-msgstr ""
+msgstr "特殊鍵永遠顯示"
 
 #. Name for the page up/down gesture preference
 msgctxt "pref_pg_updn_gesture_title"
 msgid "Page up/down gesture"
-msgstr ""
+msgstr "上下頁手勢"
 
 #. Summary for the full screen preference
 msgctxt "pref_pg_updn_gesture_summary"
@@ -678,7 +694,7 @@ msgstr "觸覺方向鍵"
 #. Summary for the haptic feedback (bumpy arrow) preference
 msgctxt "pref_bumpyarrows_summary"
 msgid "Vibrate when sending arrow keys; useful for laggy connections"
-msgstr ""
+msgstr "發送方向鍵時震動；對較延遲的連線有用"
 
 #. Category title for the Terminal Bell preferences
 msgctxt "pref_bell_category"
@@ -709,7 +725,8 @@ msgstr "背景通知"
 #. Brief summary of the feature that is enabled when the checkbox preference
 #. for the receive notifications on terminal bell feature is checked
 msgctxt "pref_bell_notification_summary"
-msgid "Send notification when a terminal running in the background sounds a bell."
+msgid ""
+"Send notification when a terminal running in the background sounds a bell."
 msgstr "當背景終端響鈴時發出通知。"
 
 #. Preference selection to indicate use of right side of keyboard for special
@@ -822,26 +839,10 @@ msgctxt "hostpref_delkey_title"
 msgid "DEL Key"
 msgstr "DEL 鍵"
 
-#. Summary for field asking what key code is sent to the server when DEL key
-#. is pressed.
-msgctxt "hostpref_delkey_summary"
-msgid "The key code sent when DEL key is pressed"
-msgstr "當按下 DEL 鍵時，傳送金鑰代碼"
-
 #. Host character encoding preference title
 msgctxt "hostpref_encoding_title"
 msgid "Encoding"
 msgstr "編碼"
-
-#. Host character encoding preference summary
-msgctxt "hostpref_encoding_summary"
-msgid "Character encoding for the host"
-msgstr "主機的字元編碼"
-
-#. Host preference category title for connection settings
-msgctxt "hostpref_connection_category"
-msgid "Connection settings"
-msgstr "連線設定"
 
 #. Username field title for host editor preference
 msgctxt "hostpref_username_title"
@@ -864,7 +865,7 @@ msgid "Never connected"
 msgstr "從未連線"
 
 #. Message given when user copies from the terminal.
-#, c-format, fuzzy
+#, c-format
 msgctxt "console_copy_done"
 msgid "Copied %1$d byte to clipboard"
 msgid_plural "Copied %1$d bytes to clipboard"
@@ -927,7 +928,7 @@ msgstr "否"
 #. locally is forwarded to the remote end's listening port.
 msgctxt "portforward_local"
 msgid "Local"
-msgstr "本機"
+msgstr "本地端"
 
 #. Selection for a "remote" port forward. E.g., connections to a port
 #. listening remotely is forwarded to the local end's listening port.
@@ -950,9 +951,9 @@ msgstr "建立連接埠轉址"
 
 msgctxt "portforward_problem"
 msgid ""
-"Problem creating port forward, maybe you're using ports under 1024 or "
-"port is already used?"
-msgstr "新增連接埠時發生問題，可能您正在使用 1024 以下的埠或是埠被佔用?"
+"Problem creating port forward, maybe you're using ports under 1024 or port "
+"is already used?"
+msgstr "新增連接埠時發生問題，可能您正在使用 1024 以下的埠或是埠已被佔用？"
 
 #. Part of the formatting hints that will be used like: username@hostname:port
 msgctxt "format_username"
@@ -985,7 +986,7 @@ msgstr "按名字排序"
 
 msgctxt "list_menu_disconnect"
 msgid "Disconnect All"
-msgstr ""
+msgstr "斷開所有連線"
 
 msgctxt "list_menu_settings"
 msgid "Settings"
@@ -1084,15 +1085,15 @@ msgstr "取消"
 
 msgctxt "disconnect_all_message"
 msgid "Are you sure you want to disconnect from all connected hosts?"
-msgstr ""
+msgstr "您確定要斷開所有主機連線？"
 
 msgctxt "disconnect_all_pos"
 msgid "Yes, disconnect"
-msgstr ""
+msgstr "是，斷開連線"
 
 msgctxt "disconnect_all_neg"
 msgid "Cancel"
-msgstr ""
+msgstr "取消"
 
 msgctxt "terminal_no_hosts_connected"
 msgid "No hosts currently connected"
@@ -1109,7 +1110,7 @@ msgstr "連接到 %1$s:%2$d，通過 %3$s"
 #, c-format
 msgctxt "terminal_sucess"
 msgid "Verified host '%1$s' key: %2$s"
-msgstr "驗證主機 '%1$s' 金鑰： %2$s"
+msgstr "驗證主機 '%1$s' 金鑰：%2$s"
 
 msgctxt "terminal_failed"
 msgid "Host key verification failed."
@@ -1210,12 +1211,6 @@ msgid "No"
 msgstr "否"
 
 #. Preference selection for SSH Authentication Agent to be able to use pubkeys
-#. "with confirmation" only
-msgctxt "with_confirmation"
-msgid "With confirmation"
-msgstr "已確認過"
-
-#. Preference selection for SSH Authentication Agent to be able to use pubkeys
 msgctxt "yes"
 msgid "Yes"
 msgstr "是"
@@ -1270,7 +1265,7 @@ msgstr "已連線。"
 #. currently              disconnected after having been previously connected.
 msgctxt "image_description_disconnected"
 msgid "Disconnected."
-msgstr ""
+msgstr "已中斷連線。"
 
 #. Describes the icon of the "locked pubkey" icon for accessibility purposes.
 msgctxt "image_description_key_is_locked"
@@ -1281,7 +1276,7 @@ msgstr "金鑰已鎖定。"
 #. view for              accessibility purposes.
 msgctxt "image_description_toggle_control_character"
 msgid "Toggle control character."
-msgstr "切換控制字元"
+msgstr "切換控制字元。"
 
 #. Describes the icon of the "send escape character" button in the terminal
 #. view for              accessibility purposes.
@@ -1293,7 +1288,13 @@ msgstr "送出 Esc 字元。"
 #. for              accessibility purposes.
 msgctxt "image_description_send_tab_character"
 msgid "Send TAB character."
-msgstr "發送TAB鍵。"
+msgstr "發送 TAB 鍵。"
+
+#. Describes the icon of the "hide keyboard" button in the terminal view for
+#. accessibility              purposes.
+msgctxt "image_description_hide_keyboard"
+msgid "Hide keyboard."
+msgstr ""
 
 #. Describes the icon of the "show keyboard" button in the terminal view for
 #. accessibility              purposes.
@@ -1305,175 +1306,175 @@ msgstr "顯示鍵盤。"
 #. accessibility              purposes.
 msgctxt "image_description_up"
 msgid "Arrow up"
-msgstr ""
+msgstr "方向上鍵"
 
 #. Describes the icon of the "Arrow down" button in the terminal view for
 #. accessibility              purposes.
 msgctxt "image_description_down"
 msgid "Arrow down"
-msgstr ""
+msgstr "方向下鍵"
 
 #. Describes the icon of the "Arrow left" button in the terminal view for
 #. accessibility              purposes.
 msgctxt "image_description_left"
 msgid "Arrow left"
-msgstr ""
+msgstr "方向左鍵"
 
 #. Describes the icon of the "Arrow right" button in the terminal view for
 #. accessibility              purposes.
 msgctxt "image_description_right"
 msgid "Arrow right"
-msgstr ""
+msgstr "方向右鍵"
 
 #. Describes the "volume" icon in the bell volume dialog for accessibility
 #. purposes.
 msgctxt "image_description_volume"
 msgid "Volume"
-msgstr ""
+msgstr "音量"
 
 #. Text for the "Esc" button in virtual keyboard.
 msgctxt "button_key_esc"
 msgid "Esc"
-msgstr ""
+msgstr "Esc"
 
 #. Text for the "Ctrl" button in virtual keyboard.
 msgctxt "button_key_ctrl"
 msgid "Ctrl"
-msgstr ""
+msgstr "Ctrl"
 
 #. Text for the "Home" button in virtual keyboard.
 msgctxt "button_key_home"
 msgid "Home"
-msgstr ""
+msgstr "Home"
 
 #. Text for the "End" button in virtual keyboard.
 msgctxt "button_key_end"
 msgid "End"
-msgstr ""
+msgstr "End"
 
 #. Text for the "Page Up" button in virtual keyboard.
 msgctxt "button_key_pgup"
 msgid "PgUp"
-msgstr ""
+msgstr "PgUp"
 
 #. Text for the "Page Down" button in virtual keyboard.
 msgctxt "button_key_pgdn"
 msgid "PgDn"
-msgstr ""
+msgstr "PgDn"
 
 #. Text for the "F1" button in virtual keyboard.
 msgctxt "button_key_f1"
 msgid "F1"
-msgstr ""
+msgstr "F1"
 
 #. Text for the "F2" button in virtual keyboard.
 msgctxt "button_key_f2"
 msgid "F2"
-msgstr ""
+msgstr "F2"
 
 #. Text for the "F3" button in virtual keyboard.
 msgctxt "button_key_f3"
 msgid "F3"
-msgstr ""
+msgstr "F3"
 
 #. Text for the "F4" button in virtual keyboard.
 msgctxt "button_key_f4"
 msgid "F4"
-msgstr ""
+msgstr "F4"
 
 #. Text for the "F5" button in virtual keyboard.
 msgctxt "button_key_f5"
 msgid "F5"
-msgstr ""
+msgstr "F5"
 
 #. Text for the "F6" button in virtual keyboard.
 msgctxt "button_key_f6"
 msgid "F6"
-msgstr ""
+msgstr "F6"
 
 #. Text for the "F7" button in virtual keyboard.
 msgctxt "button_key_f7"
 msgid "F7"
-msgstr ""
+msgstr "F7"
 
 #. Text for the "F8" button in virtual keyboard.
 msgctxt "button_key_f8"
 msgid "F8"
-msgstr ""
+msgstr "F8"
 
 #. Text for the "F9" button in virtual keyboard.
 msgctxt "button_key_f9"
 msgid "F9"
-msgstr ""
+msgstr "F9"
 
 #. Text for the "F10" button in virtual keyboard.
 msgctxt "button_key_f10"
 msgid "F10"
-msgstr ""
+msgstr "F10"
 
 #. Text for the "F11" button in virtual keyboard.
 msgctxt "button_key_f11"
 msgid "F11"
-msgstr ""
+msgstr "F11"
 
 #. Text for the "F12" button in virtual keyboard.
 msgctxt "button_key_f12"
 msgid "F12"
-msgstr ""
+msgstr "F12"
 
 #. Label for spinner which allows user to select SSH/Telnet/Local.
 msgctxt "protocol_spinner_label"
 msgid "Protocol"
-msgstr ""
+msgstr "通訊協定"
 
 #. Label for button which expands/collapses section.
 msgctxt "expand"
 msgid "Expand"
-msgstr ""
+msgstr "展開"
 
 #. Label for checkbox which, when check, makes SSL authorization require
 #. confirmation.
 msgctxt "hostpref_authagent_with_confirmation"
 msgid "require confirmation"
-msgstr ""
+msgstr "需要確認"
 
 #. Text for button which, when clicked, adds a new host.
 msgctxt "hostpref_add_host"
 msgid "Add host"
-msgstr ""
+msgstr "新增主機"
 
 #. Text for button which, when clicked, saves an existing host.
 msgctxt "hostpref_edit_host"
 msgid "Save host"
-msgstr ""
+msgstr "儲存主機"
 
 #. Text for button which, when clicked, brings up an editor for adding a new
 #. pubkey.
 msgctxt "pubkey_add_new"
 msgid "Add new pubkey"
-msgstr ""
+msgstr "新增公鑰"
 
 #. Text for button which, when clicked, brings up picker to import an existing
 #. pubkey.
 msgctxt "pubkey_import_existing"
 msgid "Import existing pubkey"
-msgstr ""
+msgstr "匯入現有公鑰"
 
 #. Text for dialog which explains that the host URI is invalid and asks to
 #. discard.
 msgctxt "discard_host_changes_message"
 msgid "Host URI is invalid. Would you like to discard changes?"
-msgstr ""
+msgstr "無效的主機 URI。您要捨棄變更嗎?"
 
 #. Text for button which discards changes to the host.
 msgctxt "discard_host_button"
 msgid "Discard"
-msgstr ""
+msgstr "放棄變更"
 
 #. Text for button which does not discard changes and keeps editing.
 msgctxt "discard_host_cancel_button"
 msgid "Keep editing"
-msgstr ""
+msgstr "繼續編輯"
 
 #. In a list of all the key pairs the user has generated or imported into
 #. their device.              Describes a key type of the RSA algorithm with a
@@ -1482,7 +1483,7 @@ msgstr ""
 #, c-format
 msgctxt "key_type_rsa_bits"
 msgid "RSA %d-bit"
-msgstr ""
+msgstr "RSA%d位"
 
 #. In a list of all the key pairs the user has generated or imported into
 #. their device.              Describes a key type of the DSA algorithm with a
@@ -1491,7 +1492,7 @@ msgstr ""
 #, c-format
 msgctxt "key_type_dsa_bits"
 msgid "DSA %d-bit"
-msgstr ""
+msgstr "DSA%d位"
 
 #. In a list of all the key pairs the user has generated or imported into
 #. their device.              Describes a key type of the Elliptic Curve (EC)
@@ -1500,7 +1501,7 @@ msgstr ""
 #, c-format
 msgctxt "key_type_ec_bits"
 msgid "EC %d-bit"
-msgstr ""
+msgstr "EC%d位"
 
 #. In a list of all the key pairs the user has generated or imported into
 #. their device.              Describes a key type of the Ed25519 algorithm
@@ -1508,18 +1509,17 @@ msgstr ""
 #. "Ed25519").
 msgctxt "key_type_ed25519"
 msgid "Ed25519"
-msgstr ""
+msgstr "Ed25519"
 
 #. In a list of all the key pairs the user has generated or imported into
 #. their device.              Describes a key type of an unknown algorithm.
 msgctxt "key_type_unknown"
 msgid "Key type unknown"
-msgstr ""
+msgstr "未知的密鑰類型"
 
 #. In a list of all the key pairs the user has generated or imported into
 #. their device.              Added to the end of a key description to indicate
 #. that the key is encrypted (i.e,              password protected).
 msgctxt "key_attribute_encrypted"
 msgid "(encrypted)"
-msgstr ""
-
+msgstr "（加密的）"

@@ -20,8 +20,6 @@ package org.connectbot.service;
 import java.io.IOException;
 import java.lang.ref.WeakReference;
 import java.security.KeyPair;
-import java.security.PrivateKey;
-import java.security.PublicKey;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -40,6 +38,8 @@ import org.connectbot.data.HostStorage;
 import org.connectbot.transport.TransportFactory;
 import org.connectbot.util.HostDatabase;
 import org.connectbot.util.PreferenceConstants;
+import org.connectbot.util.ProviderLoader;
+import org.connectbot.util.ProviderLoaderListener;
 import org.connectbot.util.PubkeyDatabase;
 import org.connectbot.util.PubkeyUtils;
 
@@ -67,7 +67,7 @@ import android.util.Log;
  *
  * @author jsharkey
  */
-public class TerminalManager extends Service implements BridgeDisconnectedListener, OnSharedPreferenceChangeListener {
+public class TerminalManager extends Service implements BridgeDisconnectedListener, OnSharedPreferenceChangeListener, ProviderLoaderListener {
 	public final static String TAG = "CB.TerminalManager";
 
 	private ArrayList<TerminalBridge> bridges = new ArrayList<TerminalBridge>();
@@ -141,10 +141,7 @@ public class TerminalManager extends Service implements BridgeDisconnectedListen
 
 		for (PubkeyBean pubkey : pubkeys) {
 			try {
-				PrivateKey privKey = PubkeyUtils.decodePrivate(pubkey.getPrivateKey(), pubkey.getType());
-				PublicKey pubKey = PubkeyUtils.decodePublic(pubkey.getPublicKey(), pubkey.getType());
-				KeyPair pair = new KeyPair(pubKey, privKey);
-
+				KeyPair pair = PubkeyUtils.convertToKeyPair(pubkey, null);
 				addKey(pubkey, pair);
 			} catch (Exception e) {
 				Log.d(TAG, String.format("Problem adding key '%s' to in-memory cache", pubkey.getNickname()), e);
@@ -164,6 +161,7 @@ public class TerminalManager extends Service implements BridgeDisconnectedListen
 
 		connectivityManager = new ConnectivityReceiver(this, lockingWifi);
 
+		ProviderLoader.load(this, this);
 	}
 
 	private void updateSavingKeys() {
@@ -474,6 +472,16 @@ public class TerminalManager extends Service implements BridgeDisconnectedListen
 
 	public ArrayList<TerminalBridge> getBridges() {
 		return bridges;
+	}
+
+	@Override
+	public void onProviderLoaderSuccess() {
+		Log.d(TAG, "Installed crypto provider successfully");
+	}
+
+	@Override
+	public void onProviderLoaderError() {
+		Log.e(TAG, "Failure while installing crypto provider");
 	}
 
 	public class TerminalBinder extends Binder {

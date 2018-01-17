@@ -37,11 +37,13 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ResolveInfo;
 import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.ColorMatrix;
+import android.graphics.ColorMatrixColorFilter;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Path;
-import android.graphics.PixelXorXfermode;
 import android.graphics.RectF;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -87,6 +89,8 @@ public class TerminalView extends FrameLayout implements FontSizeChangedListener
 	private final Paint paint;
 	private final Paint cursorPaint;
 	private final Paint cursorStrokePaint;
+	private final Paint cursorInversionPaint;
+	private final Paint cursorMetaInversionPaint;
 
 	// Cursor paints to distinguish modes
 	private Path ctrlCursor, altCursor, shiftCursor;
@@ -106,6 +110,8 @@ public class TerminalView extends FrameLayout implements FontSizeChangedListener
 	private Pattern mControlCodes = null;
 	private Matcher mCodeMatcher = null;
 	private AccessibilityEventSender mEventSender = null;
+
+	private char[] singleDeadKey = new char[1];
 
 	private static final String BACKSPACE_CODE = "\\x08\\x1b\\[K";
 	private static final String CONTROL_CODE_PATTERN = "\\x1b\\[K[^m]+[m|:]";
@@ -140,10 +146,28 @@ public class TerminalView extends FrameLayout implements FontSizeChangedListener
 
 		cursorPaint = new Paint();
 		cursorPaint.setColor(bridge.color[bridge.defaultFg]);
-		cursorPaint.setXfermode(new PixelXorXfermode(bridge.color[bridge.defaultBg]));
 		cursorPaint.setAntiAlias(true);
 
-		cursorStrokePaint = new Paint(cursorPaint);
+		cursorInversionPaint = new Paint();
+		cursorInversionPaint.setColorFilter(new ColorMatrixColorFilter(new ColorMatrix(new float[] {
+				-1, 0, 0, 0, 255,
+				0, -1, 0, 0, 255,
+				0, 0, -1, 0, 255,
+				0, 0, 0, 1, 0
+		})));
+		cursorInversionPaint.setAntiAlias(true);
+
+		cursorMetaInversionPaint = new Paint();
+		cursorMetaInversionPaint.setColorFilter(
+				new ColorMatrixColorFilter(new ColorMatrix(new float[] {
+						-1f, 0, 0, 0, 255,
+						0, -1f, 0, 0, 255,
+						0, 0, -1f, 0, 255,
+						0, 0, 0, 0.5f, 0
+				})));
+		cursorMetaInversionPaint.setAntiAlias(true);
+
+		cursorStrokePaint = new Paint(cursorInversionPaint);
 		cursorStrokePaint.setStrokeWidth(0.1f);
 		cursorStrokePaint.setStyle(Paint.Style.STROKE);
 
@@ -198,14 +222,12 @@ public class TerminalView extends FrameLayout implements FontSizeChangedListener
 			private TerminalBridge bridge = TerminalView.this.bridge;
 			private float totalY = 0;
 
+			/**
+			 * This should only handle scrolling when terminalTextViewOverlay is {@code null}, but
+			 * we need to handle the page up/down gesture if it's enabled.
+			 */
 			@Override
 			public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
-				// The terminalTextViewOverlay handles scrolling. Only handle scrolling if it
-				// is not available (i.e. on pre-Honeycomb devices).
-				if (terminalTextViewOverlay != null) {
-					return false;
-				}
-
 				// activate consider if within x tolerance
 				int touchSlop =
 						ViewConfiguration.get(TerminalView.this.context).getScaledTouchSlop();
@@ -219,7 +241,7 @@ public class TerminalView extends FrameLayout implements FontSizeChangedListener
 					// enabled.
 					boolean pgUpDnGestureEnabled =
 							prefs.getBoolean(PreferenceConstants.PG_UPDN_GESTURE, false);
-					if (e2.getX() <= getWidth() / 3 && pgUpDnGestureEnabled) {
+					if (pgUpDnGestureEnabled && e2.getX() <= getWidth() / 3) {
 						// otherwise consume as pgup/pgdown for every 5 lines
 						if (moved > 5) {
 							((vt320) bridge.buffer).keyPressed(vt320.KEY_PAGE_DOWN, ' ', 0);
@@ -230,14 +252,16 @@ public class TerminalView extends FrameLayout implements FontSizeChangedListener
 							bridge.tryKeyVibrate();
 							totalY = 0;
 						}
-					} else if (moved != 0) {
+						return true;
+					} else if (terminalTextViewOverlay == null && moved != 0) {
 						int base = bridge.buffer.getWindowBase();
 						bridge.buffer.setWindowBase(base + moved);
 						totalY = 0;
+						return false;
 					}
 				}
 
-				return true;
+				return false;
 			}
 
 			@Override
@@ -264,8 +288,8 @@ public class TerminalView extends FrameLayout implements FontSizeChangedListener
 
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
-		if (gestureDetector != null) {
-			gestureDetector.onTouchEvent(event);
+		if (gestureDetector != null && gestureDetector.onTouchEvent(event)) {
+			return true;
 		}
 
 		// Old version of copying, only for pre-Honeycomb.
@@ -339,9 +363,7 @@ public class TerminalView extends FrameLayout implements FontSizeChangedListener
 			return true;
 		}
 
-		super.onTouchEvent(event);
-
-		return true;
+		return super.onTouchEvent(event);
 	}
 
 	/**
@@ -415,7 +437,7 @@ public class TerminalView extends FrameLayout implements FontSizeChangedListener
 				if (cursorColumn < 0 || cursorRow < 0)
 					return;
 
-				int currentAttribute = bridge.buffer.getAttributes(
+				long currentAttribute = bridge.buffer.getAttributes(
 						cursorColumn, cursorRow);
 				boolean onWideCharacter = (currentAttribute & VDUBuffer.FULLWIDTH) != 0;
 
@@ -431,32 +453,41 @@ public class TerminalView extends FrameLayout implements FontSizeChangedListener
 				canvas.clipRect(0, 0,
 						bridge.charWidth * (onWideCharacter ? 2 : 1),
 						bridge.charHeight);
-				canvas.drawPaint(cursorPaint);
 
+				int metaState = bridge.getKeyHandler().getMetaState();
+				if (y + bridge.charHeight < bridge.bitmap.getHeight()) {
+					Bitmap underCursor = Bitmap.createBitmap(bridge.bitmap, x, y,
+							bridge.charWidth * (onWideCharacter ? 2 : 1), bridge.charHeight);
+					if (metaState == 0)
+						canvas.drawBitmap(underCursor, 0, 0, cursorInversionPaint);
+					else
+						canvas.drawBitmap(underCursor, 0, 0, cursorMetaInversionPaint);
+				} else {
+					canvas.drawPaint(cursorPaint);
+				}
 				final int deadKey = bridge.getKeyHandler().getDeadKey();
 				if (deadKey != 0) {
-					canvas.drawText(new char[] { (char) deadKey }, 0, 1, 0, 0, cursorStrokePaint);
+					singleDeadKey[0] = (char) deadKey;
+					canvas.drawText(singleDeadKey, 0, 1, 0, 0, cursorStrokePaint);
 				}
 
 				// Make sure we scale our decorations to the correct size.
 				canvas.concat(scaleMatrix);
 
-				int metaState = bridge.getKeyHandler().getMetaState();
-
 				if ((metaState & TerminalKeyListener.OUR_SHIFT_ON) != 0)
 					canvas.drawPath(shiftCursor, cursorStrokePaint);
 				else if ((metaState & TerminalKeyListener.OUR_SHIFT_LOCK) != 0)
-					canvas.drawPath(shiftCursor, cursorPaint);
+					canvas.drawPath(shiftCursor, cursorInversionPaint);
 
 				if ((metaState & TerminalKeyListener.OUR_ALT_ON) != 0)
 					canvas.drawPath(altCursor, cursorStrokePaint);
 				else if ((metaState & TerminalKeyListener.OUR_ALT_LOCK) != 0)
-					canvas.drawPath(altCursor, cursorPaint);
+					canvas.drawPath(altCursor, cursorInversionPaint);
 
 				if ((metaState & TerminalKeyListener.OUR_CTRL_ON) != 0)
 					canvas.drawPath(ctrlCursor, cursorStrokePaint);
 				else if ((metaState & TerminalKeyListener.OUR_CTRL_LOCK) != 0)
-					canvas.drawPath(ctrlCursor, cursorPaint);
+					canvas.drawPath(ctrlCursor, cursorInversionPaint);
 
 				// Restore previous clip region
 				canvas.restore();
@@ -643,7 +674,10 @@ public class TerminalView extends FrameLayout implements FontSizeChangedListener
 								+ ".providers.StatusProvider"), null, null, null, null);
 				if (cursor != null) {
 					try {
-						cursor.moveToFirst();
+						if (!cursor.moveToFirst()) {
+							continue;
+						}
+
 						/*
 						 * These content providers use a special cursor that only has
 						 * one element, an integer that is 1 if the screen reader is

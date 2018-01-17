@@ -5,8 +5,9 @@ buildscript {
 
     dependencies {
         classpath 'org.kt3k.gradle.plugin:coveralls-gradle-plugin:2.6.3'
-        classpath 'com.android.tools.build:gradle:2.2.0-alpha7'
+        classpath 'com.android.tools.build:gradle:2.3.0'
         classpath 'com.github.gfx.ribbonizer:plugin:0.5.0'
+        classpath 'com.trickyandroid:jacoco-everywhere:0.2.1'
         if (rootProject.hasProperty('jacocoVersion')) {
             classpath "org.jacoco:org.jacoco.core:${rootProject.jacocoVersion}"
         }
@@ -15,11 +16,10 @@ buildscript {
 
 plugins {
     id 'info.vividcode.android.sdk-manager' version '0.9.0'
-    id 'jacoco'
 }
 
 ext {
-    supportLibraryVersion = '23.4.0'
+    supportLibraryVersion = '25.3.0'
     testRunnerVersion = '0.5'
     espressoVersion = '2.2.2'
 }
@@ -28,9 +28,9 @@ apply plugin: 'info.vividcode.android.sdk-manager'
 apply plugin: 'com.android.application'
 apply plugin: 'com.github.kt3k.coveralls'
 apply plugin: 'com.github.gfx.ribbonizer'
+apply plugin: 'jacoco-everywhere'
 apply from: '../config/quality.gradle'
 apply from: '../config/translations.gradle'
-apply from: '../config/jacoco.gradle'
 
 repositories {
     maven {
@@ -38,24 +38,14 @@ repositories {
     }
 }
 
-dependencies {
-    compile 'org.connectbot:sshlib:2.2.5-SNAPSHOT'
-
-    testCompile 'junit:junit:4.12'
-    testCompile 'org.mockito:mockito-core:1.10.19'
-    testCompile 'org.assertj:assertj-core:1.7.0'
-    testCompile('org.robolectric:robolectric:3.0') {
-        exclude group: 'commons-logging', module: 'commons-logging'
-        exclude group: 'org.apache.httpcomponents', module: 'httpclient'
-    }
-}
-
 def isCi = "true".equals(System.getenv("CI"))
 def preDexEnabled = "true".equals(System.getProperty("pre-dex", "true"))
 
+coveralls.jacocoReportPath = 'build/reports/coverage/google/debug/report.xml'
+
 android {
-    compileSdkVersion 23
-    buildToolsVersion "23.0.3"
+    compileSdkVersion 25
+    buildToolsVersion "25.0.2"
 
     dexOptions {
         // Skip pre-dexing when running on a CI or when disabled via -Dpre-dex=false
@@ -64,16 +54,16 @@ android {
 
     defaultConfig {
         applicationId "org.connectbot"
-        versionName "1.9.0-alpha2"
-        versionCode 19002
+        versionName "1.9.2"
+        versionCode 19200
 
-        minSdkVersion 8
+        minSdkVersion 9
         targetSdkVersion 23
 
+        vectorDrawables.useSupportLibrary = true
+
         ndk {
-            moduleName "com_google_ase_Exec"
-            ldLibs "log"
-            stl "system"
+            abiFilters 'x86', 'x86_64', 'armeabi', 'armeabi-v7a', 'arm64-v8a', 'mips'
         }
 
         testApplicationId "org.connectbot.tests"
@@ -95,6 +85,7 @@ android {
         compile "com.android.support:recyclerview-v7:$supportLibraryVersion"
         compile "com.android.support:support-v4:$supportLibraryVersion"
         compile "com.android.support:appcompat-v7:$supportLibraryVersion"
+        compile "com.takisoft.fix:preference-v7:$supportLibraryVersion.0"
         compile "com.android.support:design:$supportLibraryVersion"
 
         androidTestCompile("com.android.support.test:runner:$testRunnerVersion") {
@@ -133,11 +124,25 @@ android {
         }
     }
 
-    testOptions {
-        unitTests.all {
-            jacoco {
-                includeNoLocationClasses = true
+    flavorDimensions "license"
+
+    productFlavors {
+        // This product flavor uses the Conscrypt library which is open
+        // source and licensed under Apache 2.
+        oss {
+            dimension "license"
+            versionNameSuffix "-oss"
+            ndk {
+                abiFilters "armeabi-v7a", "arm64-v8a", "x86", "x86_64"
             }
+        }
+
+        // This product flavor uses the Google Play Services library for
+        // ProviderInstaller. It uses Conscrypt under-the-hood, but the
+        // Google Play Services SDK itself is not open source.
+        google {
+            dimension "license"
+            versionNameSuffix ""
         }
     }
 
@@ -149,6 +154,26 @@ android {
     packagingOptions {
         exclude 'META-INF/LICENSE.txt'
         exclude 'LICENSE.txt'
+    }
+    externalNativeBuild {
+        cmake {
+            path 'CMakeLists.txt'
+        }
+    }
+}
+
+// Dependencies must be below the android block to allow productFlavor specific deps.
+dependencies {
+    compile 'org.connectbot:sshlib:2.2.5-SNAPSHOT'
+    googleCompile 'com.google.android.gms:play-services-base:10.0.1'
+    ossCompile 'org.conscrypt:conscrypt-android:1.0.0.RC2'
+
+    testCompile 'junit:junit:4.12'
+    testCompile 'org.mockito:mockito-core:1.10.19'
+    testCompile 'org.assertj:assertj-core:1.7.0'
+    testCompile('org.robolectric:robolectric:3.2.2') {
+        exclude group: 'commons-logging', module: 'commons-logging'
+        exclude group: 'org.apache.httpcomponents', module: 'httpclient'
     }
 }
 

@@ -25,9 +25,11 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.StringRes;
+import android.support.graphics.drawable.VectorDrawableCompat;
 import android.support.v4.view.ViewCompat;
 import android.support.v4.view.accessibility.AccessibilityEventCompat;
 import android.support.v4.view.accessibility.AccessibilityNodeInfoCompat;
@@ -46,6 +48,9 @@ import android.widget.TextView;
  */
 public class CheckableMenuItem extends RelativeLayout {
 	private static final String ACCESSIBILITY_EVENT_CLASS_NAME = "android.widget.Switch";
+
+	private final Rect mPlaceHolderRect = new Rect(0, 0, 1, 1);
+	private static final String PLACEHOLDER_STRING = "";
 
 	private final View mRootView;
 	private final TextView mTitle;
@@ -83,7 +88,9 @@ public class CheckableMenuItem extends RelativeLayout {
 			@Override
 			protected void onPopulateEventForVirtualView(int virtualViewId, AccessibilityEvent event) {
 				if (virtualViewId != HOST_ID) {
-					throw new IllegalArgumentException("Only HOST_ID (" + HOST_ID + ") supported; requested " + virtualViewId);
+					// TODO(kroot): remove this when the bug is fixed.
+					event.setContentDescription(PLACEHOLDER_STRING);
+					return;
 				}
 
 				event.setContentDescription(mTitle.getText() + " " + mSummary.getText());
@@ -94,7 +101,10 @@ public class CheckableMenuItem extends RelativeLayout {
 			@Override
 			protected void onPopulateNodeForVirtualView(int virtualViewId, AccessibilityNodeInfoCompat node) {
 				if (virtualViewId != HOST_ID) {
-					throw new IllegalArgumentException("Only HOST_ID (" + HOST_ID + ") supported; requested " + virtualViewId);
+					// TODO(kroot): remove this when the bug is fixed.
+					node.setBoundsInParent(mPlaceHolderRect);
+					node.setContentDescription(PLACEHOLDER_STRING);
+					return;
 				}
 
 				mTmpRect.set(0, 0, CheckableMenuItem.this.getWidth(), CheckableMenuItem.this.getHeight());
@@ -112,7 +122,7 @@ public class CheckableMenuItem extends RelativeLayout {
 			@Override
 			protected boolean onPerformActionForVirtualView(int virtualViewId, int action, Bundle arguments) {
 				if (virtualViewId != HOST_ID) {
-					throw new IllegalArgumentException("Only HOST_ID (" + HOST_ID + ") supported; requested " + virtualViewId);
+					return false;
 				}
 
 				if (action == AccessibilityNodeInfoCompat.ACTION_CLICK) {
@@ -147,12 +157,18 @@ public class CheckableMenuItem extends RelativeLayout {
 
 			typedArray.recycle();
 
-			Resources res = context.getResources();
-
 			ImageView icon = (ImageView) mRootView.findViewById(R.id.icon);
-			icon.setImageDrawable(res.getDrawable(iconRes));
 			mTitle.setText(titleRes);
-			mSummary.setText(summaryRes);
+			if (iconRes != 0) {
+				Resources resources = context.getResources();
+				Resources.Theme theme = context.getTheme();
+				Drawable iconDrawable = VectorDrawableCompat.create(resources, iconRes, theme);
+
+				icon.setImageDrawable(iconDrawable);
+			}
+			if (summaryRes != 0) {
+				mSummary.setText(summaryRes);
+			}
 		}
 	}
 

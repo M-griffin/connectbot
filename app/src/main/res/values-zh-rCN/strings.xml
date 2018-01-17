@@ -87,6 +87,8 @@
   <string name="pref_emulation_summary">设置使用PTY连接时的终端模式</string>
   <string name="pref_scrollback_title">回滚长度</string>
   <string name="pref_scrollback_summary">在内存中为每个控制台保留的回滚缓存长度</string>
+  <string name="pref_backupkeys_title">备份公钥</string>
+  <string name="pref_backupkeys_summary">使用安卓的备份机制，保存私钥的备份</string>
   <string name="pref_ui_category">用户界面</string>
   <string name="pref_rotation_title">旋转模式</string>
   <string name="pref_rotation_summary">当键盘打开或关闭时屏幕如何旋转(水平或竖直)</string>
@@ -148,10 +150,7 @@
   <string name="hostpref_quickdisconnect_title">连接断开时关闭</string>
   <string name="hostpref_quickdisconnect_summary">远程连接断开后，立即关闭不提示。</string>
   <string name="hostpref_delkey_title">DEL键</string>
-  <string name="hostpref_delkey_summary">按下DEL键时发送给服务器的键值</string>
   <string name="hostpref_encoding_title">编码</string>
-  <string name="hostpref_encoding_summary">主机的字符编码</string>
-  <string name="hostpref_connection_category">连接设置</string>
   <string name="hostpref_username_title">用户名</string>
   <string name="hostpref_hostname_title">主机</string>
   <string name="hostpref_port_title">端口</string>
@@ -226,7 +225,6 @@
   <string name="local_shell_unavailable">失败! 本地Shell在该手机上不可用</string>
   <string name="notification_text">%1$s 需要你关注。</string>
   <string name="no">不</string>
-  <string name="with_confirmation">需要确认</string>
   <string name="yes">确定</string>
   <string name="menu_colors_reset">重置</string>
   <string name="app_is_running">ConnectBot 正在运行</string>
@@ -242,6 +240,7 @@
   <string name="image_description_toggle_control_character">切换控制字符。</string>
   <string name="image_description_send_escape_character">发送转义字符。</string>
   <string name="image_description_send_tab_character">发送TAB键。</string>
+  <string name="image_description_hide_keyboard">隐藏键盘</string>
   <string name="image_description_show_keyboard">显示键盘。</string>
   <string name="image_description_up">向上的箭头</string>
   <string name="image_description_down">向下的箭头</string>
@@ -276,4 +275,10 @@
   <string name="discard_host_changes_message">主机 URI 无效。你要放弃更改吗？</string>
   <string name="discard_host_button">放弃</string>
   <string name="discard_host_cancel_button">继续编辑</string>
+  <string name="key_type_rsa_bits">RSA%d位</string>
+  <string name="key_type_dsa_bits">DSA%d位</string>
+  <string name="key_type_ec_bits">EC%d位</string>
+  <string name="key_type_ed25519">Ed25519</string>
+  <string name="key_type_unknown">未知的密钥类型</string>
+  <string name="key_attribute_encrypted">（暗号化）</string>
 </resources>

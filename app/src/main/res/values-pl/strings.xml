@@ -114,19 +114,16 @@
   <string name="hostpref_stayconnected_title">Pozostań połączony</string>
   <string name="hostpref_stayconnected_summary">Spróbuj połączyć się z hostem ponownie po przerwaniu połączenia</string>
   <string name="hostpref_delkey_title">Klawisz DEL</string>
-  <string name="hostpref_delkey_summary">Kod klawisza wysyłany przy wciśnięciu DEL</string>
   <string name="hostpref_encoding_title">Kodowanie</string>
-  <string name="hostpref_encoding_summary">Kodowanie znaków dla hostu</string>
-  <string name="hostpref_connection_category">Ustawienia połączenia</string>
   <string name="hostpref_username_title">Nazwa użytkownika</string>
   <string name="hostpref_hostname_title">Host</string>
   <string name="hostpref_port_title">Port</string>
   <string name="bind_never">Nigdy nie połączono</string>
   <plurals name="console_copy_done">
     <item quantity="one">Skopiowano %1$d bajtów do schowka</item>
-    <item quantity="few">Skopiowano %1$d bajt do schowka</item>
-    <item quantity="many">Skopiowano %1$d bajtów do schowka</item>
-    <item quantity="other">Skopiowano %1$d bajtów do schowka</item>
+    <item quantity="few">Skopiowano %1$d bajtów do schowka</item>
+    <item quantity="many">Skopiowano %1$d bajt do schowka</item>
+    <item quantity="other"/>
   </plurals>
   <string name="console_copy_start">Dotknij i przeciągnij\nlub użyj trackball\'a\naby zaznaczyć obszar do skopiowania</string>
   <string name="console_menu_close">Zamknij</string>
@@ -190,7 +187,6 @@
   <string name="local_shell_unavailable">Niepowodzenie! Lokalna powłoka nie jest obsługiwana na tym telefonie.</string>
   <string name="notification_text">%1$s wymaga reakcji</string>
   <string name="no">Nie</string>
-  <string name="with_confirmation">Z potwierdzeniem</string>
   <string name="yes">Tak</string>
   <string name="menu_colors_reset">Przywróć</string>
   <string name="app_is_running">ConnectBot jest uruchomiony</string>

@@ -13,7 +13,9 @@
   <string name="help_intro">Selecteer hieronder een onderwerp voor meer informatie over een onderwerp.</string>
   <string name="terms_and_conditions">Algemene voorwaarden</string>
   <string name="hints">Tips</string>
+  <string name="host_shortcuts_header">Snelkoppelingen</string>
   <string name="host_shortcuts_content">Druk lang op de Android desktop om een directe snelkoppeling te maken naar veelgebruikte SSH hosts.</string>
+  <string name="next_host">Volgende host</string>
   <string name="pubkey_generate">Genereren</string>
   <string name="pubkey_delete">Sleutel verwijderen</string>
   <string name="pubkey_gather_entropy">Bezig met het verzamelen van Entropie</string>
@@ -70,6 +72,7 @@
   <string name="pref_ui_category">Gebruikers interface</string>
   <string name="pref_rotation_title">Rotatie mode</string>
   <string name="pref_rotation_summary">Hoe rotatie te veranderen wanneer keyboard in/uit geschoven is</string>
+  <string name="pref_alwaysvisible_title">Speciale toetsen altijd zichtbaar</string>
   <string name="pref_fullscreen_title">Volledig scherm</string>
   <string name="pref_fullscreen_summary">Verberg status balk terwijl in console</string>
   <string name="pref_memkeys_title">Onthoud sleutels in geheugen</string>
@@ -97,7 +100,7 @@
   <string name="list_pubkeyids_none">Gebruik sleutels niet</string>
   <string name="list_pubkeyids_any">Gebruik een willekeurige ontgrendelde sleutel</string>
   <string name="hostpref_nickname_title">Bijnaam</string>
-  <string name="hostpref_color_title">Kleur catogorie</string>
+  <string name="hostpref_color_title">Kleur categorie</string>
   <string name="hostpref_fontsize_title">Lettergrootte</string>
   <string name="hostpref_pubkeyid_title">Gebruik pubkey authenticatie</string>
   <string name="hostpref_authagent_title">Gebruik SSH auth agent</string>
@@ -110,10 +113,7 @@
   <string name="hostpref_stayconnected_title">Blijf verbonden</string>
   <string name="hostpref_stayconnected_summary">Verbinding automatisch proberen te herstellen</string>
   <string name="hostpref_delkey_title">Del-toets</string>
-  <string name="hostpref_delkey_summary">De toetscode als de DEL-knop in wordt gedrukt</string>
   <string name="hostpref_encoding_title">Codering</string>
-  <string name="hostpref_encoding_summary">Tekencodering voor de host</string>
-  <string name="hostpref_connection_category">Verbindings instellingen</string>
   <string name="hostpref_username_title">Gebruikersnaam</string>
   <string name="hostpref_hostname_title">Host</string>
   <string name="hostpref_port_title">Poort</string>
@@ -162,6 +162,7 @@
   <string name="delete_message">Weet je zeker dat je \'%1$s\' wilt verwijderen?</string>
   <string name="delete_pos">Ja, verwijder</string>
   <string name="delete_neg">Annuleren</string>
+  <string name="disconnect_all_message">Weet je zeker dat je de verbinding wilt verbreken van alle verbonden hosts?</string>
   <string name="terminal_no_hosts_connected">Momenteel geen hosts verbonden</string>
   <string name="terminal_connecting">Bezig met verbinden naar %1$s:%2$d via %3$s</string>
   <string name="terminal_sucess">Gecontroleerde host \'%1$s\' sleutel: %2$s</string>
@@ -184,7 +185,6 @@
   <string name="local_shell_unavailable">Mislukking! Lokale shell is niet beschikbaar op deze telefoon.</string>
   <string name="notification_text">%1$s wil je aandacht.</string>
   <string name="no">Nee</string>
-  <string name="with_confirmation">Met toestemming</string>
   <string name="yes">Ja</string>
   <string name="menu_colors_reset">Terug naar standaardinstellingen</string>
   <string name="app_is_running">ConnectBot werkt (Connecties zijn actief)</string>

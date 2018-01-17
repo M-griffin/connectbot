@@ -75,16 +75,23 @@ public class TerminalTextViewOverlay extends TextView {
 		oldBufferHeight = numRows;
 
 		StringBuilder buffer = new StringBuilder();
+		int previousTotalLength = 0;
 
 		for (int r = 0; r < numRows && vb.charArray[r] != null; r++) {
 			for (int c = 0; c < numCols; c++) {
 				buffer.append(vb.charArray[r][c]);
 			}
-			while (buffer.length() > 0 &&
+
+			// Truncate all the new whitespace without removing the old data.
+			while (buffer.length() > previousTotalLength &&
 					Character.isWhitespace(buffer.charAt(buffer.length() - 1))) {
 				buffer.setLength(buffer.length() - 1);
 			}
+
+			// Make sure each line ends with a carriage return and then remember the buffer
+			// at that length.
 			buffer.append('\n');
+			previousTotalLength = buffer.length();
 		}
 
 		oldScrollY = vb.getWindowBase() * getLineHeight();
@@ -153,7 +160,7 @@ public class TerminalTextViewOverlay extends TextView {
 
 	@Override
 	protected void onSelectionChanged(int selStart, int selEnd) {
-		if (selStart <= selEnd) {
+		if (selStart >= 0 && selEnd >= 0 && selStart <= selEnd) {
 			currentSelection = getText().toString().substring(selStart, selEnd);
 		}
 		super.onSelectionChanged(selStart, selEnd);
@@ -161,12 +168,12 @@ public class TerminalTextViewOverlay extends TextView {
 
 	@Override
 	public void scrollTo(int x, int y) {
-		int lineMultiple = y / getLineHeight();
+		int lineMultiple = (y * 2 + 1) / (getLineHeight() * 2);
 
 		TerminalBridge bridge = terminalView.bridge;
 		bridge.buffer.setWindowBase(lineMultiple);
 
-		super.scrollTo(0, lineMultiple * getLineHeight());
+		super.scrollTo(0, y);
 	}
 
 	@Override
@@ -174,6 +181,8 @@ public class TerminalTextViewOverlay extends TextView {
 		if (event.getAction() == MotionEvent.ACTION_DOWN) {
 			// Selection may be beginning. Sync the TextView with the buffer.
 			refreshTextFromBuffer();
+		} else if (event.getAction() == MotionEvent.ACTION_UP) {
+			super.scrollTo(0, terminalView.bridge.buffer.getWindowBase() * getLineHeight());
 		}
 
 		// Mouse input is treated differently:
@@ -184,12 +193,12 @@ public class TerminalTextViewOverlay extends TextView {
 			}
 			terminalView.viewPager.setPagingEnabled(true);
 		} else {
-			terminalView.onTouchEvent(event);
+			if (terminalView.onTouchEvent(event)) {
+				return true;
+			}
 		}
 
-		super.onTouchEvent(event);
-
-		return true;
+		return super.onTouchEvent(event);
 	}
 
 	@Override

@@ -20,28 +20,28 @@
 
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
-	<org.connectbot.util.SwitchCompatPreference
+	<SwitchPreferenceCompat
 		android:key="memkeys"
 		android:title="@string/pref_memkeys_title"
 		android:summary="@string/pref_memkeys_summary"
 		android:defaultValue="true"
 		/>
 
-	<org.connectbot.util.SwitchCompatPreference
+	<SwitchPreferenceCompat
 		android:key="connPersist"
 		android:title="@string/pref_conn_persist_title"
 		android:summary="@string/pref_conn_persist_summary"
 		android:defaultValue="true"
 		/>
 
-	<org.connectbot.util.SwitchCompatPreference
+	<SwitchPreferenceCompat
 		android:key="wifilock"
 		android:title="@string/pref_wifilock_title"
 		android:summary="@string/pref_wifilock_summary"
 		android:defaultValue="true"
 		/>
 
-	<org.connectbot.util.SwitchCompatPreference
+	<SwitchPreferenceCompat
 		android:key="backupkeys"
 		android:title="@string/pref_backupkeys_title"
 		android:summary="@string/pref_backupkeys_summary"
@@ -82,35 +82,35 @@
 			android:defaultValue="Default"
 			/>
 
-		<org.connectbot.util.SwitchCompatPreference
+		<SwitchPreferenceCompat
 			android:key="titlebarhide"
 			android:title="@string/pref_titlebarhide_title"
 			android:summary="@string/pref_titlebarhide_summary"
 			android:defaultValue="false"
 			/>
 
-		<org.connectbot.util.SwitchCompatPreference
+		<SwitchPreferenceCompat
 			android:key="fullscreen"
 			android:title="@string/pref_fullscreen_title"
 			android:summary="@string/pref_fullscreen_summary"
 			android:defaultValue="false"
 			/>
 
-		<org.connectbot.util.SwitchCompatPreference
+		<SwitchPreferenceCompat
 			android:key="pgupdngesture"
 			android:title="@string/pref_pg_updn_gesture_title"
 			android:summary="@string/pref_pg_updn_gesture_summary"
 			android:defaultValue="false"
 			/>
 
-		<org.connectbot.util.SwitchCompatPreference
+		<SwitchPreferenceCompat
 			android:key="volumefont"
 			android:title="@string/pref_volumefont_title"
 			android:summary="@string/pref_volumefont_summary"
 			android:defaultValue="true"
 			/>
 
-		<org.connectbot.util.SwitchCompatPreference
+		<SwitchPreferenceCompat
 			android:key="keepalive"
 			android:title="@string/pref_keepalive_title"
 			android:summary="@string/pref_keepalive_summary"
@@ -121,20 +121,20 @@
 	<PreferenceCategory
 		android:title="@string/pref_keyboard_category">
 
-		<org.connectbot.util.SwitchCompatPreference
+		<SwitchPreferenceCompat
 			android:key="alwaysvisible"
 			android:title="@string/pref_alwaysvisible_title"
 			android:defaultValue="false"
 			/>
 
-		<org.connectbot.util.SwitchCompatPreference
+		<SwitchPreferenceCompat
 			android:key="shiftfkeys"
 			android:title="@string/pref_shiftfkeys_title"
 			android:summary="@string/pref_shiftfkeys_summary"
 			android:defaultValue="false"
 			/>
 
-		<org.connectbot.util.SwitchCompatPreference
+		<SwitchPreferenceCompat
 			android:key="ctrlfkeys"
 			android:title="@string/pref_ctrlfkeys_title"
 			android:summary="@string/pref_ctrlfkeys_summary"
@@ -168,7 +168,7 @@
 			android:defaultValue="Ctrl+A then Space"
 			/>
 
-		<org.connectbot.util.SwitchCompatPreference
+		<SwitchPreferenceCompat
 			android:key="bumpyarrows"
 			android:title="@string/pref_bumpyarrows_title"
 			android:summary="@string/pref_bumpyarrows_summary"
@@ -179,7 +179,7 @@
 	<PreferenceCategory
 		android:title="@string/pref_bell_category">
 
-		<org.connectbot.util.SwitchCompatPreference
+		<SwitchPreferenceCompat
 			android:key="bell"
 			android:title="@string/pref_bell_title"
 			android:defaultValue="true"
@@ -188,15 +188,16 @@
 		<org.connectbot.util.VolumePreference
 			android:key="bellVolume"
 			android:title="@string/pref_bell_volume_title"
+			android:dialogLayout="@layout/volume_preference_dialog_layout"
 			/>
 
-		<org.connectbot.util.SwitchCompatPreference
+		<SwitchPreferenceCompat
 			android:key="bellVibrate"
 			android:title="@string/pref_bell_vibrate_title"
 			android:defaultValue="true"
 			/>
 
-		<org.connectbot.util.SwitchCompatPreference
+		<SwitchPreferenceCompat
 			android:key="bellNotification"
 			android:title="@string/pref_bell_notification_title"
 			android:summary="@string/pref_bell_notification_summary"
